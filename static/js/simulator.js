@@ -37,7 +37,6 @@ document.addEventListener('DOMContentLoaded', function() {
             updateCostAnalysis(data);
             updateEnvironmentalImpact(data);
         } catch (error) {
-            console.error('Error in simulation:', error);
             alert('Error calculating results. Please try again.');
         }
     });
