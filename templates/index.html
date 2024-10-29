@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heating Efficiency Simulator</title>
+    <link rel="stylesheet" href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container py-4">
+        <h1 class="text-center mb-4">Ancient vs Modern Heating Simulator</h1>
+        
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Room Parameters</h5>
+                        <div class="mb-3">
+                            <label class="form-label">Room Width (m)</label>
+                            <input type="number" id="roomWidth" class="form-control" value="5">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Room Length (m)</label>
+                            <input type="number" id="roomLength" class="form-control" value="6">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Insulation Type</label>
+                            <select id="insulation" class="form-select">
+                                <option value="none">None (Ancient)</option>
+                                <option value="basic">Basic</option>
+                                <option value="modern">Modern</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Heating Method</label>
+                            <select id="heatingMethod" class="form-select">
+                                <optgroup label="Ancient Methods">
+                                    <option value="fireplace">Ancient Fireplace</option>
+                                    <option value="hypocaust">Roman Hypocaust</option>
+                                    <option value="ondol">Korean Ondol</option>
+                                    <option value="pech">Russian Pech</option>
+                                    <option value="kang">Chinese Kang</option>
+                                    <option value="brazier">Medieval Brazier</option>
+                                </optgroup>
+                                <optgroup label="Modern Methods">
+                                    <option value="radiator">Modern Radiator</option>
+                                    <option value="underfloor">Modern Underfloor</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        <button id="simulate" class="btn btn-primary w-100">Simulate</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-8">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Heat Distribution Visualization</h5>
+                        <canvas id="heatMap" width="400" height="300" class="w-100"></canvas>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">Efficiency Metrics</h5>
+                                <canvas id="efficiencyChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">Cost Analysis</h5>
+                                <div id="costAnalysis">
+                                    <div class="mb-3">
+                                        <label class="form-label">Installation Cost:</label>
+                                        <h4 id="installationCost" class="text-info">$0</h4>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Monthly Operating Cost:</label>
+                                        <h4 id="monthlyCost" class="text-success">$0</h4>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Energy Rate:</label>
+                                        <h4 id="energyRate" class="text-warning">$0/kWh</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">Environmental Impact</h5>
+                                <div id="environmentalImpact">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="mb-3">
+                                                <label class="form-label">Monthly CO2 Emissions:</label>
+                                                <h4 id="monthlyEmissions" class="text-danger">0 kg</h4>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="mb-3">
+                                                <label class="form-label">Renewable Energy %:</label>
+                                                <h4 id="renewablePercentage" class="text-success">0%</h4>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="mb-3">
+                                                <label class="form-label">Emissions per kWh:</label>
+                                                <h4 id="emissionsPerKwh" class="text-info">0 kg/kWh</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ url_for('static', filename='js/visualization.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/simulator.js') }}"></script>
+</body>
+</html>
